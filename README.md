@@ -1,6 +1,6 @@
 # Assignment	2
 Môn	học:	Lập	trình	Web
-Ngày	23	tháng	10	năm	2018
+Ngày	20	tháng	11	năm	2018
 ## 1. Mục	tiêu
 Lập	trình	ứng	dụng	Web	dựa	trên	các	giao	diện	đã	được	thiết	kế	ở	assignment	1,	sử	dụng	
 ngôn	ngữ	lập	trình	PHP	và	cơ	sở	dữ	liệu	MySQL.
