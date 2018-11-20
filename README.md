@@ -8,29 +8,29 @@ ngôn	ngữ	lập	trình	PHP	và	cơ	sở	dữ	liệu	MySQL.
 2.	Yêu	cầu	sản	phẩm
 • Dùng	các	kiến	thức	đã	được	học:	HTML5/CSS3,	Javascript,	PHP	và	MySQL.	Sinh	viên	
 xây	dựng	ứng	dụng	Web	bằng	các	ngôn	ngữ	khác	không	phù	hợp	với	chương	trình	
-học	sẽ	nhận	0	điểm	cho	Assignment	2.
+học	sẽ	nhận	0	điểm	cho	Assignment	2.  
 • SV	được	phép	sử	dụng	các	thư	viện	PHP	có	sẵn	nhưng	Không	được	sử	dụng	bất	kì	
 PHP	Framework,	CMF	(Content	Management	Framework)	hay	CMS	(Content	
 Management	System).	Nếu	bị	phát	hiện	sử	dụng	Framework,	CMF,	CMS,	sinh	viên	sẽ	
-nhận	0	điểm	cho	Assignment	2.
+nhận	0	điểm	cho	Assignment	2.  
 • Tất	cả	mã	HTML5/CSS3	phải	được	kiểm	tra	và	sửa	lỗi	theo	chuẩn	W3C.	
-http://validator.w3.org
+http://validator.w3.org  
 • Sử	dụng	responsive	design	(trang	web	có	khả	năng	hiển	thị	tốt	trên	các	thiết	bị	điện	
-thoại	di	động,	máy	tính	bảng,	máy	tính	để	bàn,...)
+thoại	di	động,	máy	tính	bảng,	máy	tính	để	bàn,...)  
 • Ứng	dụng	phải	tương	thích	trên	các	trình	duyệt	web	khác	nhau	như:	Firefox,	IE,	
-Chrome,	Safari,	Opera.
+Chrome,	Safari,	Opera.  
 • Lập	trình	các	tính	năng	cơ	bản	tối	thiểu	cho	các	loại	người	dùng:
-o Khách:
-§ Xem	các	trang	thông	tin	public	trên	trang	web.
-§ Đăng	kí	thành	viên.
-§ Đăng	nhập,	quên	mật	khẩu,...
+o Khách:  
+§ Xem	các	trang	thông	tin	public	trên	trang	web.  
+§ Đăng	kí	thành	viên.  
+§ Đăng	nhập,	quên	mật	khẩu,...  
 o Thành	viên (sau	khi	đã	đăng	nhập):	cho	phép	thực	hiện	một	số	hàm	chức	
-năng	cơ	bản:
-§ Thay	đổi	thông	tin	cá	nhân.
-§ Thay	đổi	mật	khẩu.
+năng	cơ	bản:  
+§ Thay	đổi	thông	tin	cá	nhân.  
+§ Thay	đổi	mật	khẩu.  
 § Đăng	bài	viết,	viết	bình	luận,	đăng	tin, mua	hàng,.	.	.	(tùy	vào	từng	đề	
-cụ	thể)
-o Quản	trị	viên:
+cụ	thể)  
+o Quản	trị	viên:  
 § Tính	năng	cho	phép	quản	lý	thành	viên	(xem	thông	tin,	xóa	thành	
 viên,.	.	.	).
 § Tính	năng	quản	lý	(xem,	thêm,	sửa,	xoá)	các	tài	nguyên	của	ứng	dụng	
