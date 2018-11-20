@@ -4,7 +4,7 @@ Môn	học:	Lập	trình	Web
 Ngày	23	tháng	10	năm	2018
 1. Mục	tiêu
 Lập	trình	ứng	dụng	Web	dựa	trên	các	giao	diện	đã	được	thiết	kế	ở	assignment	1,	sử	dụng	
-ngôn	ngữ	lập	trình	PHP	và	cơ	sở	dữ	liệu	MySQL.
+ngôn	ngữ	lập	trình	PHP	và	cơ	sở	dữ	liệu	MySQL.  
 2.	Yêu	cầu	sản	phẩm
 • Dùng	các	kiến	thức	đã	được	học:	HTML5/CSS3,	Javascript,	PHP	và	MySQL.	Sinh	viên	
 xây	dựng	ứng	dụng	Web	bằng	các	ngôn	ngữ	khác	không	phù	hợp	với	chương	trình	
