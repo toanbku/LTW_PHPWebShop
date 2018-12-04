@@ -16,26 +16,26 @@
 	$n_password = strlen($_POST["password"]);
 
 	if ($n_firstName < 2 || $n_firstName > 30) {
-		echo nl2br("Error: Length firstName must from 2 to 30 charater!");
+		echo "Error: Length firstName must from 2 to 30 charater!";
 		$flag = false;
 	}
 	if ($n_lastName < 2 || $n_lastName > 30) {	
-		echo nl2br("Error: Length lastName must from 2 to 30 charater!");
+		echo "Error: Length lastName must from 2 to 30 charater!";
 		$flag = false;
 	}
 	if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-		echo nl2br("Error: Email format invalid");
+		echo "Error: Email format invalid";
 		$flag = false;
 	}
 	if ($n_userName < 2 || $n_userName > 30) {	
-		echo nl2br("Error: Length password must from 2 to 30 charater!");
+		echo "Error: Length password must from 2 to 30 charater!";
 		$flag = false;
 	}
 	if ($n_password < 2 || $n_password > 30) {	
 		$flag = false;
 	}
 	if ($_POST["password"] != $_POST["passwordRepeat"]) {
-		echo nl2br("Error: Enter password not same");
+		echo "Error: Enter password not same";
 		$flag = false;
 	}
 
@@ -49,9 +49,10 @@
 	    //        "(as1, as, a.a@gmail.com, asd, asd);";
 
 	    $str = "INSERT INTO employees" . 
-	           "(firstName, lastName, email, userName, password, type)" . 
-	           "VALUES" . "(\"" . $_POST["firstName"] . "\", \"" . $_POST["lastName"] . "\", \"" . $_POST["email"] . "\", \"" . $_POST["userName"] . "\", \"" . $_POST["password"] . "\", 1);";
+	           "(firstName, lastName, email, userName, password)" . 
+	           "VALUES" . "(\"" . $_POST["firstName"] . "\", \"" . $_POST["lastName"] . "\", \"" . $_POST["email"] . "\", \"" . $_POST["userName"] . "\", \"" . $_POST["password"] . "\");";
 	    
+	    echo "ok1";
 
 	    if ($conn->query($str) === TRUE) {
 	    	if (isset($_SERVER["HTTP_REFERER"])) {

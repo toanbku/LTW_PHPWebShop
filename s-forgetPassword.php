@@ -5,14 +5,12 @@
 </head>
 <body>
 	<?php
-
 	include("s-config.php");
 
+	$userName = $_POST["userName"];
+	$password = $_POST["password"];
 
-    $userName = $_POST["userName"];
-    $emailRestore = $_POST["emailRestore"];
-
-    $sql = "SELECT id_employee FROM employees WHERE userName=\"" . $userName . "\" AND email=\"" . $emailRestore . "\";";
+    $sql = "SELECT id_employee FROM employees WHERE userName=\"" . $userName . "\" AND password=\"" . $password . "\";";
 
     $result = $conn->query($sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -25,7 +23,7 @@
            	header("Location: " . $_SERVER["HTTP_REFERER"]);
         }
     }else {
-         echo "Error: Your userName or emailRestore is invalid";
+         echo "Error: Your userName or Password is invalid";
      }
 
 	?>
