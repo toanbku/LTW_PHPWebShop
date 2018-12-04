@@ -319,7 +319,7 @@
 	<!-- Content page -->
 	
 	<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" style="margin: 0 auto;">
-					<form>
+					<form action="s-forgetPassword.php" method="post">
 							
 						<h3 class="mtext-105 cl2 txt-center p-b-30 cl11">
 							Please enter username and email restoration
