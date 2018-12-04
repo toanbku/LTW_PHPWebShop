@@ -1,12 +1,12 @@
 <?php
-	$dbhost = 'localhost';
-	$dbuserName = 'root';
-	$dbpassword = '';
-	$dbName = 'assignment2';
+$dbhost = 'localhost';
+$dbuserName = 'hiennv';
+$dbpassword = 'nguyenhien0212';
+$dbName = 'assignment2';
 
-	$conn = new mysqli($dbhost, $dbuserName, $dbpassword, $dbName);
+$conn = new mysqli($dbhost, $dbuserName, $dbpassword, $dbName);
 
-	if (!$conn) {
-		die('Could not connect: ' . mysql_error());
-	}
+if (!$conn) {
+	die('Could not connect: ' . mysql_error());
+}
 ?>
