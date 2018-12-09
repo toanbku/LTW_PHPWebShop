@@ -16,7 +16,7 @@ class Product{
 
     //constructor
     public function __construct($db){
-        $this ->conn = $db;
+        $this->conn = $db;
     }
     
    //read all products 

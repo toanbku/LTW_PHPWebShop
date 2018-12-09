@@ -6,7 +6,7 @@
 <body>
 	<?php
 
-	include("s-config.php");
+	include "config/database.php";
 
 
     $userName = $_POST["userName"];

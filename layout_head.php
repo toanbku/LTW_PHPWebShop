@@ -1,3 +1,6 @@
+<?php session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,20 +51,28 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Balance:  5218.25$
-						</a>
+						<!-- <a href="#" class="flex-c-m trans-04 p-lr-25">
+						
+						</a> -->
+						<?php if (isset($_SESSION["userName"])){
+							echo '<a href="profile.php" class="flex-c-m trans-04 p-lr-25">';
+							echo $_SESSION["userName"];
+							echo '</a>';
 
+							echo '<a href="logout.php" class="flex-c-m trans-04 p-lr-25">';
+							echo 'Logout';
+							echo '</a>';
+						} else {
+						?>
 						<a href="login.php" class="flex-c-m trans-04 p-lr-25">
 							Login
 						</a>
+						<?php
+							}
+						?>
 
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
 						</a>
 					</div>
 				</div>
@@ -169,7 +180,7 @@
 						</a>
 
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							My Account
+							<?php echo$_SESSION["userName"] ?>
 						</a>
 
 						<a href="#" class="flex-c-m p-lr-10 trans-04">

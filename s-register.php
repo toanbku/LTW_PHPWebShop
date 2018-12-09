@@ -1,25 +1,24 @@
-
-
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+	<title>Register Page</title>
 </head>
+
 <body>
-	 <?php
-
-
+	<?php
 	$flag = true;
-	$n_firstName = strlen($_POST["firstName"]);
-	$n_lastName = strlen($_POST["lastName"]);
-	$n_userName = strlen($_POST["userName"]);
-	$n_password = strlen($_POST["password"]);
+	$firstName = $_POST["firstName"];
+	$lastName = $_POST["lastName"];
+	$userName = $_POST["userName"];
+	$password = $_POST["password"];
+	$email = $_POST["email"];
 
-	if ($n_firstName < 2 || $n_firstName > 30) {
+	if (strlen($firstName) < 2 || strlen($firstName) > 30) {
 		echo nl2br("Error: Length firstName must from 2 to 30 charater!");
 		$flag = false;
 	}
-	if ($n_lastName < 2 || $n_lastName > 30) {	
+	if (strlen($lastName) < 2 || strlen($lastName) > 30) {	
 		echo nl2br("Error: Length lastName must from 2 to 30 charater!");
 		$flag = false;
 	}
@@ -27,11 +26,11 @@
 		echo nl2br("Error: Email format invalid");
 		$flag = false;
 	}
-	if ($n_userName < 2 || $n_userName > 30) {	
+	if (strlen($userName) < 2 || strlen($userName) > 30) {	
 		echo nl2br("Error: Length password must from 2 to 30 charater!");
 		$flag = false;
 	}
-	if ($n_password < 2 || $n_password > 30) {	
+	if (strlen($password) < 2 || strlen($password) > 30) {	
 		$flag = false;
 	}
 	if ($_POST["password"] != $_POST["passwordRepeat"]) {
@@ -41,28 +40,43 @@
 
 	if ($flag) {
 
-		include("s-config.php");
+		include("config/database.php");
 
-	    // $str = "INSERT INTO employees" . 
-	    //        "(firstName, lastName, email, userName, password)" . 
-	    //        "VALUES" . 
-	    //        "(as1, as, a.a@gmail.com, asd, asd);";
+		//get database connection
+		$database = new Database();
+		$conn = $database->getConnection();
 
-	    $str = "INSERT INTO employees" . 
-	           "(firstName, lastName, email, userName, password, type)" . 
-	           "VALUES" . "(\"" . $_POST["firstName"] . "\", \"" . $_POST["lastName"] . "\", \"" . $_POST["email"] . "\", \"" . $_POST["userName"] . "\", \"" . $_POST["password"] . "\", 1);";
-	    
-
-	    if ($conn->query($str) === TRUE) {
-	    	if (isset($_SERVER["HTTP_REFERER"])) {
-           		header("Location: " . $_SERVER["HTTP_REFERER"]);
-            }
-		} else {
-		    echo "Error: " . $conn->error;
+	    $query  =  "INSERT INTO users (firstName, lastName, email, userName, password, type)  VALUES  (?,?,?,?,?,?) ";
+			
+		$password = MD5($password);
+		$array = array( $firstName, $lastName, $email, $userName, $password, 1);
+		
+		$stmt = $conn->prepare($query);
+		
+		$stmt->execute($array);
+		if ($stmt){
+			$errorCode = $stmt->errorCode();
+			if  ($errorCode != 00000)
+				echo "Có lỗi xảy ra ".$errorCode;
+			else{
+				echo "Reg thành công";
+				
+			}
 		}
-	    mysql_close($conn);
+		else{
+			echo "reg failed";
+		}
+		
+	    // if ($conn->query($str) === TRUE) {
+	    // 	if (isset($_SERVER["HTTP_REFERER"])) {
+        //    		header("Location: " . $_SERVER["HTTP_REFERER"]);
+        //     }
+		// } else {
+		//     echo "Error: ";
+		// }
 	}
     ?>
 
 </body>
+
 </html>
