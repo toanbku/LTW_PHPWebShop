@@ -98,7 +98,7 @@
 							</li>
 
 							<li>
-								<a href="shoping-cart.php">Features</a>
+								<a href="shopping-cart.php">Features</a>
 							</li>
 
 							<li class="label1" data-label1="new">
@@ -204,7 +204,7 @@
 				</li>
 
 				<li>
-					<a href="shoping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shopping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
 				<li>

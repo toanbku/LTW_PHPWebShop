@@ -262,7 +262,8 @@
 			            }
 						
 						echo '';
-						echo '<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">';
+						$send_id = '"'.$id.'"';
+						echo '<a href="#" id='.$send_id.' class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">';
 						echo 'Quick View';
 						echo '</a>';
 						echo '</div>';
@@ -274,7 +275,7 @@
 						echo '</a>';
 						echo '';
 						echo '<span class="stext-105 cl3">';
-						echo '$16.64';
+						echo '$ '.$price;
 						echo '</span>';
 						echo '</div>';
 						echo '';

@@ -15,7 +15,10 @@ $product_image = new ProductImage($db);
 // get ID of the product to be edited
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 $action = isset($_GET['action']) ? $_GET['action'] : "";
- 
+if ($action == "added"){
+	//Vuongprolegend lam
+} 
+
 // set the id as product id property
 $product->id = $id;
  
@@ -24,113 +27,18 @@ $product->readOne();
  
 
 include 'layout_head.php';
+include 'navigation.php';
 // set page title
 $page_title = $product->name;
 
 ?>
 
-	<!-- Cart -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
-
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your Cart
-				</span>
-
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-			
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
-				
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 	<!-- breadcrumb -->
 	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg p-all-75">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<span class="stext-109 cl4">
-				Supersaiyan Jacket
-			</span>
+		<div class="bread-crumb flex-w p-l-25">
+			&nbsp
 		</div>
 	</div>
 		
@@ -191,7 +99,7 @@ $page_title = $product->name;
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
-							<?php echo $product->description; ?>
+							<?php echo html_entity_decode($product->description); ?>
 						</p>
 						
 						<!--  -->
@@ -235,23 +143,27 @@ $page_title = $product->name;
 							</div>
 
 							<div class="flex-w flex-r-m p-b-10">
+							<form name="form" action="add_to_cart.php" method="GET">
 								<div class="size-204 flex-w flex-m respon6-next">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input type="hidden" name="id" value="<?=$product->id?>">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
-
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<!-- js-add-cart-detail -->
+									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 										Add to cart
 									</button>
 								</div>
+								</form>
+
 							</div>	
 						</div>
 
@@ -466,71 +378,71 @@ $page_title = $product->name;
 	</section>
 
 
-	<!-- Related Products -->
+	<!-- Related Products
 	<section class="sec-relate-product bg0 p-t-45 p-b-105">
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center cl11">
 					Related Products
 				</h3>
-			</div>
+			</div> -->
 
 			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
+			<!-- <div class="wrap-slick2">
+				<div class="slick2"> -->
 					<?php
-						// set product id
-						$product_image->product_id=$id;
+						// // set product id
+						// $product_image->product_id=$id;
 						 
-						// read all related product image
-						$stmt_product_image = $product_image->readByProductId();
+						// // read all related product image
+						// $stmt_product_image = $product_image->readByProductId();
 						 
-						// count all relatd product image
-						$num_product_image = $stmt_product_image->rowCount();
-						echo "tong cot la: ".$num_product_image;
-						if($num_product_image>0){
-					        // loop through all product images
-					        while ($row = $stmt_product_image->fetch(PDO::FETCH_ASSOC)){
-					            // image name and source url
-					            $product_image_name = $row['name'];
-					            $source="images/{$product_image_name}";
+						// // count all relatd product image
+						// $num_product_image = $stmt_product_image->rowCount();
+						// echo "tong cot la: ".$num_product_image;
+						// if($num_product_image>0){
+					    //     // loop through all product images
+					    //     while ($row = $stmt_product_image->fetch(PDO::FETCH_ASSOC)){
+					    //         // image name and source url
+					    //         $product_image_name = $row['name'];
+					    //         $source="images/{$product_image_name}";
 
-					            echo '<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">';
-								echo '<!-- Block2 -->';
-								echo '<div class="block2">';
-								echo '<div class="block2-pic hov-img0">';
-								echo '<img src="'.$source.'" alt="IMG-PRODUCT">';
-								echo '';
-								echo '<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">';
-								echo 'Quick View';
-								echo '</a>';
-								echo '</div>';
-								echo '';
-								echo '<div class="block2-txt flex-w flex-t p-t-14">';
-								echo '<div class="block2-txt-child1 flex-col-l ">';
-								echo '<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">';
-								echo 'Esprit Ruffle Shirt';
-								echo '</a>';
-								echo '';
-								echo '<span class="stext-105 cl3">';
-								echo '$16.64';
-								echo '</span>';
-								echo '</div>';
-								echo '';
-								echo '<div class="block2-txt-child2 flex-r p-t-3">';
-								echo '<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">';
-								echo '<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">';
-								echo '<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">';
-								echo '</a>';
-								echo '</div>';
-								echo '</div>';
-								echo '</div>';
-								echo '</div>';
+					    //         echo '<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">';
+						// 		echo '<!-- Block2 -->';
+						// 		echo '<div class="block2">';
+						// 		echo '<div class="block2-pic hov-img0">';
+						// 		echo '<img src="'.$source.'" alt="IMG-PRODUCT">';
+						// 		echo '';
+						// 		echo '<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">';
+						// 		echo 'Quick View';
+						// 		echo '</a>';
+						// 		echo '</div>';
+						// 		echo '';
+						// 		echo '<div class="block2-txt flex-w flex-t p-t-14">';
+						// 		echo '<div class="block2-txt-child1 flex-col-l ">';
+						// 		echo '<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">';
+						// 		echo 'Esprit Ruffle Shirt';
+						// 		echo '</a>';
+						// 		echo '';
+						// 		echo '<span class="stext-105 cl3">';
+						// 		echo '$ '.$price;
+						// 		echo '</span>';
+						// 		echo '</div>';
+						// 		echo '';
+						// 		echo '<div class="block2-txt-child2 flex-r p-t-3">';
+						// 		echo '<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">';
+						// 		echo '<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">';
+						// 		echo '<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">';
+						// 		echo '</a>';
+						// 		echo '</div>';
+						// 		echo '</div>';
+						// 		echo '</div>';
+						// 		echo '</div>';
 
 
-					            // echo "<img src='{$source}' class='product-img-thumb' data-img-id='{$row['id']}' />";
-					        }
-					    }else{ echo "No images."; }
+					    //         // echo "<img src='{$source}' class='product-img-thumb' data-img-id='{$row['id']}' />";
+					    //     }
+					    // }else{ echo "No images."; }
 					?>
 
 					<!-- <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15"> -->

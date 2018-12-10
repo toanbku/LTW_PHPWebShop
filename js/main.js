@@ -222,7 +222,7 @@
             var single = $(this).parent().parent().prev().text();
             single = single.replace('$', '');
             single = single.trim();
-            $(this).parent().parent().next().text("$ " + Number(single) * Number($(this).next().val()) + ".00"); //auto change total value
+            $(this).parent().parent().next().text("$ " + (Number(single) * Number($(this).next().val())).toFixed(2)); //auto change total value
         }
     });
 
@@ -233,7 +233,7 @@
         single = single.replace('$', '');
         single = single.trim();
         $(this).prev().val(numProduct + 1);
-        $(this).parent().parent().next().text("$ " + Number(single) * Number($(this).prev().val()) + ".00"); //auto change total value
+        $(this).parent().parent().next().text("$ " + (Number(single) * Number($(this).prev().val())).toFixed(2)); //auto change total value
     });
 
     $('.btn-update-cart').on('click', function(){
@@ -286,8 +286,20 @@
     [ Show modal1 ]*/
     $('.js-show-modal1').on('click',function(e){
         e.preventDefault();
-        $('.js-modal1').addClass('show-modal1');
+
+        var quick_view_id = $(this).attr("id");
+
+        $.ajax({
+            url:'quickView.php',
+            method: "POST",
+            data:{quick_view_id: quick_view_id},
+            success: function(data){
+                $('.quick_view').html(data);
+                $('.js-modal1').addClass('show-modal1');
+            }
+        });
     });
+
 
     $('.js-hide-modal1').on('click',function(){
         $('.js-modal1').removeClass('show-modal1');

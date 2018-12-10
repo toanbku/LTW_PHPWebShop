@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2018 at 04:10 PM
+-- Generation Time: Dec 10, 2018 at 11:39 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -70,12 +70,22 @@ INSERT INTO `coupons` (`id`, `content`, `percent`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `id_user` int(11) NOT NULL,
-  `id_item` int(11) NOT NULL,
+  `transaction_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`transaction_id`, `user_id`, `product_id`, `quantity`, `status`, `created`) VALUES
+('', 5, 40, 1, '', '2018-12-10 11:28:00'),
+('', 5, 35, 1, '', '2018-12-10 11:32:45'),
+('', 5, 36, 5, '', '2018-12-10 11:33:05');
 
 -- --------------------------------------------------------
 
@@ -101,8 +111,8 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `kind`, `created`,
 (1, 'Lightweight Jacket', 'Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.', '58.79', 'womoen', '2018-12-04 15:36:18', '2018-12-04 15:36:18'),
 (27, 'San Antonio Spurs Kawhi Leonard #2 \nAdidas Black T-Shirt', '&lt;p&gt;Kawhi Leonard San Antonio Spurs T shirt, made by Adidas the official on court producers of NBA apparel and jerseys.&lt;/p&gt;\r\n&lt;p&gt;Leonard and 2 are printed on the back in authentic font.&lt;/p&gt;\r\n&lt;ul&gt;\r\n&lt;li&gt;Basic Print&lt;/li&gt;\r\n&lt;li&gt;Officially licensed NBA Product&lt;/li&gt;\r\n&lt;li&gt;NBA Hologram Sticker&lt;/li&gt;\r\n&lt;li&gt;Mens Sizing&lt;/li&gt;\r\n&lt;li&gt;100% Cotton&lt;/li&gt;\r\n&lt;li&gt;Adidas &quot;Go To Tee&quot;&lt;/li&gt;\r\n&lt;/ul&gt;', '99.99', NULL, '2016-10-28 20:49:40', '2016-10-28 05:49:40'),
 (28, 'LaMarcus Aldridge San Antonio Spurs NBA Adidas Player Black T-Shirt', '&lt;p&gt;Looks like a jersey, wears like a tee -- this 100% cotton Adidas NBA player name and number t-shirt sports screen prints of your favorite player\'s name and number, plus team graphics on the chest.&lt;/p&gt;\r\n&lt;p&gt;Officially licensed by the NBA.&lt;/p&gt;', '49.99', NULL, '2016-10-28 20:52:43', '2016-10-28 05:52:43'),
-(29, 'Tim Duncan San Antonio Spurs Jersey Name and Number T-Shirt', '&lt;p&gt;Cheer on Tim Duncan and the Spurs as they begin their road to repeating as NBA champions.&lt;/p&gt;\r\n&lt;p&gt;Show your support for Duncan and the San Antonio Spurs in your very own black Spurs Name and Number Tee.&lt;/p&gt;', '29.99', NULL, '2016-10-28 20:56:23', '2016-10-28 05:56:23'),
-(30, 'Women\'s Customized San Antonio Spurs Black Replica Basketball Jersey', '&lt;p&gt;San Antonio Spurs Custom Jerseys with any name and number.&lt;/p&gt;\r\n&lt;p&gt;Choose the style and size.&lt;/p&gt;\r\n&lt;p&gt;There\'s no better way to prove your loyalty than to make this jersey your own.&lt;/p&gt;', '29.99', NULL, '2016-10-28 20:58:02', '2016-10-28 05:58:02'),
+(29, 'Tim Duncan San Antonio Spurs Jersey Name and Number T-Shirt', '&lt;p&gt;Cheer on Tim Duncan and the Spurs as they begin their road to repeating as NBA champions.&lt;/p&gt;\r\n&lt;p&gt;Show your support for Duncan and the San Antonio Spurs in your very own black Spurs Name and Number Tee.&lt;/p&gt;', '39.99', NULL, '2016-10-28 20:56:23', '2016-10-28 05:56:23'),
+(30, 'Women\'s Customized San Antonio Spurs Black Replica Basketball Jersey', '&lt;p&gt;San Antonio Spurs Custom Jerseys with any name and number.&lt;/p&gt;\r\n&lt;p&gt;Choose the style and size.&lt;/p&gt;\r\n&lt;p&gt;There\'s no better way to prove your loyalty than to make this jersey your own.&lt;/p&gt;', '45.99', NULL, '2016-10-28 20:58:02', '2016-10-28 05:58:02'),
 (31, 'Klay Thompson Golden State Warriors Jersey Name and Number T-Shirt', '&lt;p&gt;It\'s Splash Time!&lt;/p&gt;\r\n&lt;p&gt;Make sure to show your support for the second half of the splash bros and get your very own Warriors Name and Number Tee.&lt;/p&gt;', '29.99', NULL, '2016-10-28 20:59:20', '2016-10-28 05:59:20'),
 (32, 'Stephen Curry Golden State Warriors #30 NBA Youth Climalite Player T-Shirt Blue', '&lt;p&gt;Featuring your favorite player\'s name and number on back with team logo at front, this Climalite polyester t-shirt provides the ultimate display of pride for a die-hard fan!&lt;/p&gt;', '29.99', NULL, '2016-10-28 21:03:19', '2016-10-28 06:03:19'),
 (33, 'Adidas Men\'s NBA Golden State Warriors-Kevin Durant #35-Mesh Logo T-Shirt', '&lt;p&gt;Show off how excited you are to welcome Kevin Durant to you Golden State Warriors with this Mesh Logo Tee from adidas.&lt;/p&gt;\r\n&lt;p&gt;It features cool graphics made from jersey like mesh and has KD\'s name and number on the back.&lt;/p&gt;\r\n&lt;p&gt;A great look, whether you\'re at the game, or a friends house watching the new look Warriors.&lt;/p&gt;', '29.99', NULL, '2016-10-28 21:05:30', '2016-10-28 06:05:30'),

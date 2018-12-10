@@ -1,7 +1,6 @@
 <?php
 // used to get mysql database connection
 class Database{
- 
     // specify your own database credentials
     private $host = "localhost";
     private $db_name = "assignment2";
