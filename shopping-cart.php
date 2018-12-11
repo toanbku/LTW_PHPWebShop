@@ -140,7 +140,7 @@
 									echo '</tr>';
 									$total += $sub_total;
 								}
-								$_SESSION['cart']['total_cost'] = $total;
+								$_SESSION['total_cost'] = $total;
 
 							?>
 						</table>

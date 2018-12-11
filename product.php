@@ -89,7 +89,6 @@ $product->readOne();
 										echo '</div>';
 							            // echo "<img src='{$source}' class='product-img-thumb' data-img-id='{$row['id']}' />";
 									}
-									echo "id la: ".$product->id;
 							    }else{ echo "No images."; }
 
 								?>

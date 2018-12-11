@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 03:40 AM
+-- Generation Time: Dec 11, 2018 at 08:55 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -70,7 +70,7 @@ INSERT INTO `coupons` (`id`, `content`, `percent`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `transaction_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `transaction_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   `total_cost` float NOT NULL,
   `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -82,13 +82,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`transaction_id`, `user_id`, `total_cost`, `status`, `created`) VALUES
-('186a9', 5, 172.16, 'Pending', '2018-12-10 17:23:24'),
-('1aad6', 5, 61.99, 'Pending', '2018-12-11 02:40:37'),
-('1fa8c', 5, 259.88, 'Pending', '2018-12-11 03:26:08'),
-('1fce3', 5, 58.79, 'Pending', '2018-12-11 02:16:28'),
-('26114', 5, 32, 'Pending', '2018-12-11 02:01:56'),
-('26cd0', 5, 172.16, 'Pending', '2018-12-10 17:25:55'),
-('29972', 5, 94.23, 'Pending', '2018-12-11 03:23:54');
+('87d4205e3a88759064642518c9124451', 5, 425.79, 'Pending', '2018-12-11 19:29:45');
 
 -- --------------------------------------------------------
 
@@ -204,20 +198,27 @@ CREATE TABLE `users` (
   `userName` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `forgot_pass_identity` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `firstName` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `lastName` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` int(11) DEFAULT NULL
+  `type` int(11) DEFAULT NULL,
+  `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `userName`, `password`, `email`, `firstName`, `lastName`, `type`) VALUES
-(5, 'root', 'e10adc3949ba59abbe56e057f20f883e', 'root@gmail.com', 'Hồ Quang', 'Toàn', 1),
-(6, 'toan', 'e10adc3949ba59abbe56e057f20f883e', 'toan@gmail.com', 'anh', 'sss', 1),
-(14, 'aaa', 'e10adc3949ba59abbe56e057f20f883e', 'aa@gmail.com', 'Hồ', 'Quang Toàn', 1),
-(17, 'aaaa', 'e10adc3949ba59abbe56e057f20f883e', 'aa@gmail.com', 'concax', 'loz', 1);
+INSERT INTO `users` (`id`, `userName`, `password`, `email`, `forgot_pass_identity`, `firstName`, `lastName`, `type`, `modified`) VALUES
+(5, 'root', '25d55ad283aa400af464c76d713c07ad', 'root@gmail.com', '', 'Nguyens', 'CÃ´ng Phuong1', 2, '2018-12-11 20:41:49'),
+(6, 'toan', 'e10adc3949ba59abbe56e057f20f883e', 'toanbku@gmail.com', 'fb7a2fbae3c9d598cb2e905ffdbb5096', 'Nguyá»…n PhÆ°Æ¡ng', 'VÆ°Æ¡ng', 1, '2018-12-11 19:23:15'),
+(14, 'aaa', 'e10adc3949ba59abbe56e057f20f883e', 'aa@gmail.com', '', 'Ho', 'Quang Toan', 1, '0000-00-00 00:00:00'),
+(18, 'phuongvuong', 'e10adc3949ba59abbe56e057f20f883e', 'phuongvuong@gmail.com', '', 'Phuong', 'Vuong', 1, '0000-00-00 00:00:00'),
+(19, 'vana', 'e10adc3949ba59abbe56e057f20f883e', 'asssa@gmail.com', '', 'Nguyá»…n VÄƒn', 'ToÃ n1', 1, '2018-12-11 19:20:03'),
+(20, 'hcmut', 'e10adc3949ba59abbe56e057f20f883e', '1613594@hcmut.edu.vn', '0fc2388693f5b78b6baa1c7bf55d502a', 'Quang', 'Toan', 1, '2018-12-11 18:19:08'),
+(21, 'viethung', 'e10adc3949ba59abbe56e057f20f883e', 'viethungcse@gmail.com', '', 'Nguyen', 'Viet Hung', 1, '0000-00-00 00:00:00'),
+(22, 'thib', '827ccb0eea8a706c4c34a16891f84e7b', 'tranthib@gmail.com', '', 'Tran', 'Thi B', 1, '0000-00-00 00:00:00'),
+(23, 'thic', 'e10adc3949ba59abbe56e057f20f883e', 'thic@gmail.com', '', 'Phan Thi', 'CC', 1, '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -292,7 +293,7 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

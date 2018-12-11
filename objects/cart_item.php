@@ -38,7 +38,7 @@ class CartItem{
         
         // prepare query statement
         $stmt = $this->conn->prepare($query);
-        $transaction_id = dechex(rand(100000,200000));
+        $transaction_id = md5(uniqid(mt_rand()));
         $status = "Pending";
         // sanitize
         $this->user_id=htmlspecialchars(strip_tags($this->user_id));

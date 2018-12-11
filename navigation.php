@@ -3,12 +3,11 @@
 
 include_once 'config/database.php';
 
-// // //include objects
+// include objects
 include_once "objects/product.php";
 include_once "objects/product_image.php";
 include_once "objects/cart_item.php";
 
-// echo $_SESSION["id"].$_SESSION["userName"];
 //get database connection
 $database1 = new Database();
 $db1 = $database1->getConnection();
@@ -64,8 +63,6 @@ $product_image1 = new ProductImage($db1);
 						$stmt_product_image=$product_image1->readFirst();
 						while ($row_product_image = $stmt_product_image->fetch(PDO::FETCH_ASSOC)){
 							echo '<img src="images/'.$row_product_image['name'].'" alt="IMG">';
-							
-							// echo '<img src="images/item-cart-01.jpg" alt="IMG">';
 						}
 
                         echo '</div>';

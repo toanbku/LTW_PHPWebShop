@@ -61,13 +61,15 @@
 							echo '</a>';
 						} else {
 						?>
+						<a href="register.php" class="flex-c-m trans-04 p-lr-25">
+							Register
+						</a>
 						<a href="login.php" class="flex-c-m trans-04 p-lr-25">
 							Login
 						</a>
 						<?php
 							}
 						?>
-
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							EN
 						</a>
@@ -127,8 +129,8 @@
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 						 <!-- data-notify="4" -->
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
-							<i class="zmdi zmdi-favorite-outline"></i>
+						<a href="history.php" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+                            <i class="zmdi zmdi-time-restore"></i>
 						</a>
 					</div>
 				</nav>
@@ -152,8 +154,8 @@
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="4">
-					<i class="zmdi zmdi-favorite-outline"></i>
+				<a href="history.php" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+					<i class="zmdi zmdi-time-restore"></i>
 				</a>
 			</div>
 
@@ -177,20 +179,28 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
-						</a>
+						<?php if (isset($_SESSION["userName"])){
+							echo '<a href="profile.php" class="flex-c-m trans-04 p-lr-25">';
+							echo $_SESSION["userName"];
+							echo '</a>';
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							<?php echo$_SESSION["userName"] ?>
+							echo '<a href="logout.php" class="flex-c-m trans-04 p-lr-25">';
+							echo 'Logout';
+							echo '</a>';
+						} else {
+						?>
+						<a href="register.php" class="flex-c-m trans-04 p-lr-25">
+							Register
 						</a>
+						<a href="login.php" class="flex-c-m trans-04 p-lr-25">
+							Login
+						</a>
+						<?php
+							}
+						?>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							&nbsp
 						</a>
 					</div>
 				</li>
