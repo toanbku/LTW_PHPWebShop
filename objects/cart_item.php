@@ -5,19 +5,60 @@ class CartItem{
     private $table_name = "orders";
 
     //object properties
-    public $id;
+    public $transaction_id;
+    public $user_id;
+    public $total_cost;
+    public $created;
+    //trash
     public $product_id;
     public $quantity;
-    public $user_id;
-    public $created;
+    public $id;
     public $modified;
-    public $transaction_id;
+
 
     //constructor
     public function __construct($db){
         $this->conn = $db;
     }
 
+    // create cart item record
+    function create(){
+        // to get times-tamp for 'created' field
+        $this->created=date('Y-m-d H:i:s');
+    
+        // query to insert cart item record
+        $query = "INSERT INTO
+                    " . $this->table_name . "
+                SET
+                    transaction_id = :transaction_id,
+                    user_id = :user_id,
+                    total_cost = :total_cost,
+                    status = :status,
+                    created = :created";
+        
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        $transaction_id = dechex(rand(100000,200000));
+        $status = "Pending";
+        // sanitize
+        $this->user_id=htmlspecialchars(strip_tags($this->user_id));
+    
+        // bind values
+        $stmt->bindParam(":transaction_id", $transaction_id);
+        $stmt->bindParam(":user_id", $this->user_id);
+        $stmt->bindParam(":total_cost", $this->total_cost);
+        $stmt->bindParam(":status", $status);
+        $stmt->bindParam(":created", $this->created);
+        
+        // execute query
+        if($stmt->execute()){
+            echo "success";
+            return true;
+
+        }
+        echo "failed";
+        return false;
+    }
 
     public function exists(){
         //query to count existing cart item
@@ -74,42 +115,6 @@ class CartItem{
     }
 
 
-    // create cart item record
-    function create(){
-    
-        // to get times-tamp for 'created' field
-        $this->created=date('Y-m-d H:i:s');
-    
-        // query to insert cart item record
-        $query = "INSERT INTO
-                    " . $this->table_name . "
-                SET
-                    product_id = :product_id,
-                    quantity = :quantity,
-                    user_id = :user_id,
-                    created = :created";
-    
-        // prepare query statement
-        $stmt = $this->conn->prepare($query);
-    
-        // sanitize
-        $this->product_id=htmlspecialchars(strip_tags($this->product_id));
-        $this->quantity=htmlspecialchars(strip_tags($this->quantity));
-        $this->user_id=htmlspecialchars(strip_tags($this->user_id));
-    
-        // bind values
-        $stmt->bindParam(":product_id", $this->product_id);
-        $stmt->bindParam(":quantity", $this->quantity);
-        $stmt->bindParam(":user_id", $this->user_id);
-        $stmt->bindParam(":created", $this->created);
-    
-        // execute query
-        if($stmt->execute()){
-            return true;
-        }
-    
-        return false;
-    }
     // read items in the cart
     public function read(){
     
@@ -196,7 +201,7 @@ class CartItem{
         $this->user_id=htmlspecialchars(strip_tags($this->user_id));
     
         // bind id
-        $stmt->bindParam(":user_id", $this->user_id);
+        $stmt->bindParam(":user_id", "'".$this->user_id."'");
     
         if($stmt->execute()){
             return true;

@@ -11,7 +11,10 @@
 
 
     $userInfo = new User($db);
-    $userInfo->getInfo($_SESSION["userName"]);
+
+    $userInfo->userName = $_SESSION["userName"];
+    
+    $userInfo->getInfo($_SESSION["id"]);
 
 ?>
 

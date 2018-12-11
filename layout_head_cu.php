@@ -51,6 +51,9 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
+						<!-- <a href="#" class="flex-c-m trans-04 p-lr-25">
+						
+						</a> -->
 						<?php if (isset($_SESSION["userName"])){
 							echo '<a href="profile.php" class="flex-c-m trans-04 p-lr-25">';
 							echo $_SESSION["userName"];
@@ -86,28 +89,28 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
-								<a href="index.php"  id="homee">Home</a>
+							<li class="active-menu">
+								<a href="index.php">Home</a>
 							</li>
 
 							<li>
-								<a href="products.php" id="shopp">Shop</a>
+								<a href="products.php">Shop</a>
 							</li>
 
 							<li>
-								<a href="shopping-cart.php" id="cartt">Cart</a>
+								<a href="shopping-cart.php">Features</a>
+							</li>
+
+							<li class="label1" data-label1="new">
+								<a href="blog.php">Blog</a>
 							</li>
 
 							<li>
-								<a href="blog.php" id="blogg">Blog</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
-								<a href="about.php" id="aboutt">About</a>
-							</li>
-
-							<li>
-								<a href="contact.php" id="contactt">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -117,17 +120,12 @@
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
-						<?php 
-							if (isset($_SESSION['cart']))
-								$number = count($_SESSION['cart']);
-							else 
-								$number = 0;
-							?>
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?=$number?>">
+
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="3">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
-						 <!-- data-notify="4" -->
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+
+						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="4">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
 					</div>
@@ -148,7 +146,7 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?=$number?>">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="3">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
@@ -190,7 +188,7 @@
 						</a>
 
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							&nbsp
+							USD
 						</a>
 					</div>
 				</li>
@@ -198,27 +196,27 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.php" id="homee">Home</a>
+					<a href="index.php">Home</a>
 				</li>
 
 				<li>
-					<a href="products.php" id="shopp">Shop</a>
+					<a href="products.php">Shop</a>
 				</li>
 
 				<li>
-					<a href="shopping-cart.php" id="cartt">Cart</a>
+					<a href="shopping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
 				<li>
-					<a href="blog.html" id="blogg">Blog</a>
+					<a href="blog.php">Blog</a>
 				</li>
 
 				<li>
-					<a href="about.html" id="aboutt">About</a>
+					<a href="about.php">About</a>
 				</li>
 
 				<li>
-					<a href="contact.html" id="contactt">Contact</a>
+					<a href="contact.php">Contact</a>
 				</li>
 			</ul>
 		</div>
@@ -239,4 +237,3 @@
 			</div>
 		</div>
 	</header>
-

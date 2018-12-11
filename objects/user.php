@@ -19,85 +19,37 @@ class User{
     }
     
    //read all products 
-    function getInfo($userName){
-        $this->userName = $userName;
+    function getInfo($id){
+        $this->id = $id;
 
         //SELECT all product query
         $query = "SELECT 
-                    id, email, firstName, lastName, type
+                    email, firstName, lastName, type
                 FROM
-                    ".$this->table_name;
+                    ".$this->table_name
+                ."WHERE id=:id";
         
         //prepare query statement
         $stmt = $this->conn->prepare($query);
 
+        // bind id
+        $stmt->bindParam(":id",  $this->id);
+
         //execute query
         $stmt->execute();
         
-        
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $this->id = $id;
+            echo "email la: ".$email;  
             $this->email = $email;
             $this->firstName = $firstName;
             $this->lastName = $lastName;
-
         }
-        // return $stmt;
+
+        return $stmt;
+        
     }
 
-//     //used for paging products
-//     public function count(){
-//         //query to count all products records
-//         $query = "SELECT count(*) FROM ". $this->table_name;
-
-//         //prepare query statement
-//         $stmt = $this->conn->prepare($query);
-        
-//         //execute query 
-//         $stmt->execute();
-
-//         //get row value
-//         $rows = $stmt->fetch(PDO::FETCH_NUM);
-        
-//         //return count
-//         return $rows[0];
-
-//     }
-    
-//     // used when filling up the update product form
-//     function readOne(){
-    
-//         // query to select single record
-//         $query = "SELECT
-//                     name, description, price
-//                 FROM
-//                     " . $this->table_name . "
-//                 WHERE
-//                     id = ?
-//                 LIMIT
-//                     0,1";
-    
-//         // prepare query statement
-//         $stmt = $this->conn->prepare( $query );
-    
-//         // sanitize
-//         $this->id=htmlspecialchars(strip_tags($this->id));
-    
-//         // bind product id value
-//         $stmt->bindParam(1, $this->id);
-    
-//         // execute query
-//         $stmt->execute();
-    
-//         // get row values
-//         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-//         // assign retrieved row value to object properties
-//         $this->name = $row['name'];
-//         $this->description = $row['description'];
-//         $this->price = $row['price'];
-//     }
 }
 
 

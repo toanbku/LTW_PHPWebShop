@@ -1,11 +1,10 @@
 <?php
-
     include 'config/database.php';
 
     //include objects
     include_once "objects/product.php";
     include_once "objects/product_image.php";
-
+    include_once "objects/category.php";
 
     //get database connection
     $database = new Database();
@@ -13,7 +12,8 @@
 
     $product = new Product($db);
     $product_image = new ProductImage($db);
-
+    
+    $category = new Category($db);
     
     // page header html
     include 'layout_head.php';
@@ -42,12 +42,24 @@ $stmt = $product->read($from_record_num, $records_per_page);
 //count number of retrieved products
 $num = $stmt->rowCount();
 
+if ($action == "exists"){
+	echo '<div class="alert alert-danger">';
+	echo '<strong>Warning!</strong> This product has exist ...';
+	echo '</div>';
+}
+
+if ($action == "added"){
+	echo '<div class="alert alert-success">';
+	echo '<strong>Successful!</strong> Done ...';
+	echo '</div>';
+}
+
+
 //if products retrieved more than zero
 if ($num > 0){
     //needed for paging
     $page_url = "products.php?";
     $total_rows = $product->count();
-
     //show products
     include_once "read_products_template.php";
 

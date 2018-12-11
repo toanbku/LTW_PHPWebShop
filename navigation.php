@@ -14,16 +14,8 @@ $database1 = new Database();
 $db1 = $database1->getConnection();
 
 // initialize objects
-$product1 = new Product($db1);
+$product = new Product($db1);
 $product_image1 = new ProductImage($db1);
-$cart_item1 = new CartItem($db1);
-
-if (isset($_SESSION["id"]))
-	$cart_item1->user_id = $_SESSION["id"];
-else
-$cart_item1->user_id = 0;
-
-$cart_count=$cart_item1->count();
 
 
 ?>
@@ -48,15 +40,23 @@ $cart_count=$cart_item1->count();
                 
                 <!-- record -->
                 <?php             
-                if ($cart_count > 0){
-					$cart_item1->user_id = $_SESSION["id"];
-					// $cart_item->user_id = 5;
-                    $stmt1 = $cart_item1->read();
-                    $total1 = 0;
-                    $item_count1=0;
-                
-                    while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
-						extract($row1);
+                if(isset($_SESSION['cart']) && count($_SESSION['cart'])>0){
+					// get the product ids
+					$ids = array();
+					foreach($_SESSION['cart'] as $id=>$value){
+						array_push($ids, $id);
+					}
+				
+					$stmt = $product->readByIds($ids);
+				
+					$total1 = 0;
+					$item_count=0;
+				
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					extract($row);
+					$quantity=$_SESSION['cart'][$id]['quantity'];
+					$product_image1->product_id = $id;
+					$sub_total=$price*$quantity;
                         echo '<ul class="header-cart-wrapitem w-full">';
                         echo '<li class="header-cart-item flex-w flex-t m-b-12">';
 						echo '<div class="header-cart-item-img">';

@@ -1,4 +1,3 @@
-
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140 p-all-50">
 		<div class="container">
@@ -249,9 +248,12 @@
 
 				<?php
 					while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-    					extract($row);
-
-						echo '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">';
+						extract($row);
+						$cate =	$category->getKind($kind);
+						while($row = $cate->fetch(PDO::FETCH_ASSOC)){
+							$kind = $row["name"];
+						}
+						echo '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item '.$kind.'">';
 						echo '<!-- Block2 -->';
 						echo '<div class="block2">';
 						echo '<div class="block2-pic hov-img0">';

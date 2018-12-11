@@ -179,7 +179,7 @@
 	//include objects
 	include_once "objects/product.php";
 	include_once "objects/product_image.php";
-
+	include_once "objects/category.php";
 
 	//get database connection
 	$database = new Database();
@@ -187,7 +187,7 @@
 
 	$product = new Product($db);
 	$product_image = new ProductImage($db);
-
+	$category = new Category($db);
 	//for pagination purposes
 	$page = isset($_GET['page']) ? $_GET['page'] : 1; //page is current page, if there's nothing set, default is 1
 	$records_per_page = 10; //set records or row of data per page

@@ -10,8 +10,7 @@ class Product{
     public $name;
     public $price;
     public $description;
-    public $category_id;
-    public $category_name;
+    public $kind;
     public $timestamp;
 
     //constructor
@@ -24,7 +23,7 @@ class Product{
 
         //SELECT all product query
         $query = "SELECT 
-                    id, name, description, price
+                    id, name, description, price, kind
                 FROM
                     ".$this->table_name ."
                 ORDER BY 
@@ -99,6 +98,25 @@ class Product{
         $this->name = $row['name'];
         $this->description = $row['description'];
         $this->price = $row['price'];
+    }
+
+    // read all product based on product ids included in the $ids variable
+    // reference http://stackoverflow.com/a/10722827/827418
+    public function readByIds($ids){
+    
+        $ids_arr = str_repeat('?,', count($ids) - 1) . '?';
+    
+        // query to select products
+        $query = "SELECT id, name, price FROM " . $this->table_name . " WHERE id IN ({$ids_arr}) ORDER BY name";
+    
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+    
+        // execute query
+        $stmt->execute($ids);
+    
+        // return values from database
+        return $stmt;
     }
 }
 
