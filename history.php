@@ -41,20 +41,20 @@
                                 else {
                         ?>
                         <table class="table">
-                          <thead style="background-color:#b2b2b2;color:#fff;">
+                            <thead style="background-color:#b2b2b2;color:#fff;">
                             <tr>
-                              <th>#</th>
-                              <th>Transaction Id</th>
-                              <th>User Id</th>
-                              <th>Total cost</th>
-                              <th>Status</th>
-                              <th>Created</th>
+                                <th>#</th>
+                                <th>Transaction Id</th>
+                                <th>User Id</th>
+                                <th>Total cost</th>
+                                <th>Status</th>
+                                <th>Created</th>
                             </tr>
-                          </thead>
-                          <tbody>
-                         <?php
-                         $i = 1;
-                          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                            </thead>
+                            <tbody>
+                            <?php
+                            $i = 1;
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                             extract($row);
                             echo '<tr>';
                             echo '<th scope="row">'.$i.'</th>';
@@ -65,19 +65,14 @@
                             echo '<td>'.$created.'</td>';
                             echo '</tr>';
                             $i ++;
-                        }
-                        ?>
-                            
-                           
-                        
-                          </tbody>
+                            }
+                            ?>
+                            </tbody>
                         </table>
      
                         <?php
                                 }
                         ?>
-				
-
 			</div>
 		</div>
 	</section>	

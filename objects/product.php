@@ -105,7 +105,7 @@ class Product{
     public function readByIds($ids){
     
         $ids_arr = str_repeat('?,', count($ids) - 1) . '?';
-    
+        
         // query to select products
         $query = "SELECT id, name, price FROM " . $this->table_name . " WHERE id IN ({$ids_arr}) ORDER BY name";
     

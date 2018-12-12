@@ -1,6 +1,8 @@
 <?php
     include_once 'layout_head.php';
-    include 'config/database.php';  
+    include_once 'navigation.php';
+
+    include_once 'config/database.php';  
     include_once "objects/cart_item.php";
 
     // tell the user order has been placed
@@ -17,25 +19,24 @@
             $cart_item->user_id = $_SESSION['id'];
             $cart_item->total_cost = $_SESSION['total_cost'];
             if ($cart_item->create()){
-                echo "<div class='alert alert-success'>";
-                echo "<strong>Your order has been placed!</strong> Thank you very much!";
-                echo "</div>";
+                $statusMsgType = 'alert alert-success';
+                $statusMsg = 'Your order has been placed! Thank you very much!'; 
                 unset($_SESSION['cart']);   
             }
             else{
-                echo "<div class='alert alert-danger'>";
-                echo "<strong>Something wrong!</strong> Please try again or contact admin!";
-                echo "</div>";   
+                $statusMsgType = 'alert alert-danger';
+                $statusMsg = 'Something wrong! Please try again or contact admin!'; 
             }
         }
         else {
-            echo "<div class='alert alert-danger'>";
-            echo "<strong>Something wrong!</strong>Nothing here!";
-            echo "</div>";  
+            $statusMsgType = 'alert alert-danger';
+            $statusMsg = 'Something wrong! Nothing here!'; 
         }
     }
+   echo '<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" style="margin: 100px auto;">';
 
-     
+    echo !empty($statusMsg)?'<p class="'.$statusMsgType.'">'.$statusMsg.'</p>':''; 
+    echo '</div>';
 
     // include page footer HTML
     include_once 'layout_foot.php';

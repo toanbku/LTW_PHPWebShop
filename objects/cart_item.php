@@ -52,11 +52,9 @@ class CartItem{
         
         // execute query
         if($stmt->execute()){
-            echo "success";
             return true;
 
         }
-        echo "failed";
         return false;
     }
 
