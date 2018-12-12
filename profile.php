@@ -63,7 +63,6 @@
             $prevCon['where'] = array('password' => MD5($_POST['cur_pass']), 'id' => $_SESSION['id']);
             $prevCon['return_type'] = 'single';
             $prevUser = $userInfo->getRows($prevCon);
-            print_r($prevUser);
             $count = 0;
             while ($row = $prevUser->fetch(PDO::FETCH_ASSOC)){
                 $count = 1;

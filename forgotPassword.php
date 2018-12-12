@@ -13,19 +13,23 @@ if(!empty($sessData['status']['msg'])){
 }
 
 ?>
-<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" style="margin: 0 auto;">
-    <h2>Enter the Email of Your Account to Reset New Password</h2>
-    <?php 
+<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" style="margin: 100px auto;">
+    <h2 class="cl5 txt-center">
+        Enter the email of your account
+	</h2>
+
+    <?php
         echo !empty($statusMsg)?'<p class="'.$statusMsgType.'">'.$statusMsg.'</p>':''; 
     ?>
 
     <div class="container">
         <div class="regisFrm">
-            <form action="userAccount.php" method="post">
-                <input type="email" name="email" placeholder="EMAIL" required="">
-                <div class="send-button">
-                    <input type="submit" name="forgotSubmit" value="CONTINUE">
+            <form action="userAccount.php" method="POST">
+                <div class="bor8 m-b-20 how-pos4-parent">
+                    <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="email" name="email" placeholder="Type email here...">
                 </div>
+                <input type="submit" name="forgotSubmit" value="CONTINUE" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+
             </form>
         </div>
     </div>

@@ -59,20 +59,20 @@ if(isset($_POST['forgotSubmit'])){
                     mail($to,$subject,$mailContent,$headers);
                 }
                 
-                $sessData['status']['type'] = 'success';
+                $sessData['status']['type'] = 'alert alert-success';
                 $sessData['status']['msg'] = 'Please check your e-mail, we have sent a password reset link to your registered email.';
             }else{
-                $sessData['status']['type'] = 'error';
+                $sessData['status']['type'] = 'alert alert-danger';
                 $sessData['status']['msg'] = 'Some problem occurred, please try again.';
             }
         }
         if ($count_forgot == 0){
-            $sessData['status']['type'] = 'error';
+            $sessData['status']['type'] = 'alert alert-danger';
             $sessData['status']['msg'] = 'Given email is not associated with any account.'; 
         }
         
     }else{
-        $sessData['status']['type'] = 'error';
+        $sessData['status']['type'] = 'alert alert-danger';
         $sessData['status']['msg'] = 'Enter email to create a new password for your account.'; 
     }
     //store reset password status into the session
@@ -92,8 +92,6 @@ if(isset($_POST['forgotSubmit'])){
             $prevCon['where'] = array('forgot_pass_identity' => $fp_code);
             $prevCon['return_type'] = 'single';
             $prevUser = $user->getRows($prevCon);
-            print_r($prevUser);
-
             $count = 0;
             
             while ($row = $prevUser->fetch(PDO::FETCH_ASSOC)){

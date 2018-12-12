@@ -14,7 +14,6 @@
     $product_image = new ProductImage($db);
     
     $category = new Category($db);
-    
     // page header html
     include 'layout_head.php';
     include 'navigation.php';
@@ -43,17 +42,14 @@ $stmt = $product->read($from_record_num, $records_per_page);
 $num = $stmt->rowCount();
 
 if ($action == "exists"){
-	echo '<div class="alert alert-danger">';
-	echo '<strong>Warning!</strong> This product has exist ...';
-	echo '</div>';
+	$statusMsgType = "alert alert-danger";
+	$statusMsg =  "Warning! This product has exist ...";
 }
 
 if ($action == "added"){
-	echo '<div class="alert alert-success">';
-	echo '<strong>Successful!</strong> Done ...';
-	echo '</div>';
+    $statusMsgType = "alert alert-success";
+	$statusMsg = 'Successful! Done ...';
 }
-
 
 //if products retrieved more than zero
 if ($num > 0){
